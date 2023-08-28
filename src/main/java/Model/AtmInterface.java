@@ -2,13 +2,12 @@ package Model;
 
 public interface AtmInterface {
 
-    void takeCash (double amount);
+    void deposit(Account account, double amount);
 
-    double giveCash (double amount);
+    double withdraw(Account account, double amount);
 
-    double checkBalance();
+    double checkBalance(Account account);
 
-    void help();
-    
-    
+    boolean validate(String username, String password);
+
 }
