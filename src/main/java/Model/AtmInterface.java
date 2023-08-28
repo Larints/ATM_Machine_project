@@ -9,6 +9,6 @@ public interface AtmInterface {
     double checkBalance();
 
     void help();
-
-
+    
+    
 }
