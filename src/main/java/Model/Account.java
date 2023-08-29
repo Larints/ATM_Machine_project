@@ -1,18 +1,48 @@
 package Model;
 
-public class Account {
+import java.io.Serializable;
+
+/**
+ * @apiNote Личный счет пользователя содержит поля: активен/деактивен,
+ *          количество средств на счете
+ */
+public class Account implements Serializable{
+	/**
+	 * @apiNote Счет активен?
+	 */
 	boolean isActive = false;
-	long money;
+	/**
+	 * @apiNote Количество средств на счете
+	 */
+	double money;
+
+	/**
+	 * @apiNote Конструктор счета (изначально на счете 0)
+	 */
 	public Account() {
 		isActive = true;
-		money =0;
+		money = 0;
 	}
-	public long getMoney() {
-		return isActive?-1:money;
+
+	/**
+	 * 
+	 * @return double - количество средств на счете
+	 */
+	public double getMoney() {
+		return isActive ? -1 : money;
 	}
-	public void setMoney(long money) {
-		this.money = isActive? money: this.money; 
+
+	/**
+	 * @apiNote double - количество вносимых средств
+	 * 
+	 */
+	public void setMoney(double money) {
+		this.money = isActive ? money : this.money;
 	}
+
+	/**
+	 * @apiNote Метод для деактивации счета
+	 */
 	public void diactivate() {
 		isActive = false;
 	}
