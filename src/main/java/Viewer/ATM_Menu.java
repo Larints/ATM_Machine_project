@@ -6,14 +6,41 @@ public class ATM_Menu implements UI {
 
     Scanner in;
 
+
     @Override
-    public void greetings() {
+    public void validate() {
+        greetings();
+        Scanner in = new Scanner(System.in);
+        System.out.println(Messages.AUTHENTICATION_LOGIN);
 
     }
 
     @Override
+    public void greetings() {
+        System.out.println(Messages.GREETINGMESSAGE);
+    }
+
+    @Override
     public void showMenu() {
-        System.out.println(MenuBar.TITLE);
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            System.out.println(MenuBar.TITLE);
+            System.out.println();
+            System.out.println(Messages.INPUTMESSAGE);
+            switch (in.nextInt()) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    System.out.println(Messages.OUTPUTMESSAGE);
+            }
+        }
+
     }
 
     @Override
@@ -21,8 +48,5 @@ public class ATM_Menu implements UI {
         return Messages.ERRORMESSAGE;
     }
 
-    @Override
-    public void validate() {
 
-    }
 }

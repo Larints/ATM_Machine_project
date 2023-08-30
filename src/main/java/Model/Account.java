@@ -1,12 +1,14 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * @apiNote Личный счет пользователя содержит поля: активен/деактивен,
- *          количество средств на счете
+ * количество средств на счете
  */
 public class Account implements Serializable {
+
 	/**
 	 * Номер счета
 	 */
@@ -76,5 +78,3 @@ public class Account implements Serializable {
 		sb.append(isActive);
 		return sb.toString();
 	}
-
-}

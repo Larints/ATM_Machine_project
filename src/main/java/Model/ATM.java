@@ -11,7 +11,7 @@ public class ATM implements AtmInterface {
     /**
      * @apinote Количество наличных в банкомате
      */
-    private long cash;
+    private double cash;
 
     /**
      * @apinote Экземпляр базы данных
@@ -29,23 +29,27 @@ public class ATM implements AtmInterface {
 
     /**
      * Положить средства на счет. Получает на вход,
+     *
      * @param account
      * @param amount
      */
     @Override
-    public void deposit(Account account, double amount) {
-//        account.getMoney() = account.getMoney() + amount;
+    public void deposit(int account, double amount) {
+
     }
 
+    //TODO доделать метод проверки счета
     @Override
-    public double withdraw(Account account, double amount) {
+    public double withdraw(int account, double amount) {
 //        account.money = account.money - amount;
         return amount;
     }
 
+
+    //TODO доделать метод проверки баланса
     @Override
-    public double checkBalance(Account account) {
-        return account.getMoney();
+    public double checkBalance(int account) {
+        return 0;
     }
 
 
