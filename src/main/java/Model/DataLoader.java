@@ -5,6 +5,6 @@ package Model;
  * @param <T> - Передаваемая БД
  */
 public interface DataLoader {
-	void save(DataBaseInteface<User> data, String fileName);
+	void save(DataBaseInteface<Account> data, String fileName);
 	Object load(String fileName);
 }

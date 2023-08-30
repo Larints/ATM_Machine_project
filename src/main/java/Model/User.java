@@ -1,15 +1,13 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @apiNote Класс пользователя: хранит пароль, счет, имя и идентификатор
+ * @apiNote Класс пользователя: хранит пароль, счетa, имя
  */
-public class User implements Serializable{
-	/**
-	 * @apiNote Уникальный идентификатор пользователя
-	 */
-	private final long ID;
+public class User implements Serializable {
 	/**
 	 * @return Пароль пользователя
 	 */
@@ -18,27 +16,19 @@ public class User implements Serializable{
 	 * @apiNote Имя пользователя
 	 */
 	private final String name;
-	/**
-	 * @apiNote Личный счет пользователя
-	 */
-	private Account account;
+
+	private List<Account> listAccounts = new ArrayList<Account>();
 
 	/**
 	 * @apiNote Конструктор для создания юзера
+	 * @param 1 строка name - Имя пользователя
+	 * @param 2 строка password - пароль пользователя
 	 */
-	public User(long ID, String name,String password) {
-		this.ID = ID;
+	public User(String name, String password) {
 		this.name = name;
 		this.password = password;
-		account = new Account();
 	}
 
-	/**
-	 * @return Уникальный идентификатор пользователя
-	 */
-	public long getID() {
-		return ID;
-	}
 	/**
 	 * 
 	 * @return String - имя пользователя
@@ -46,23 +36,50 @@ public class User implements Serializable{
 	public String getName() {
 		return name;
 	}
-	/**
-	 * @return Account - личный счет пользователя
-	 */
 
-	public Account getAccount() {
-		return account;
-	}
 	/**
 	 * @return int - хешкод пароля пользователя
 	 */
 	public int getPassword() {
 		return this.password.hashCode();
 	}
+
 	/**
 	 * @apiNote Метод изменения пароля
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * 
+	 * @param account - счет для добавления в список
+	 * @return
+	 */
+	public boolean addAccount(Account account) {
+		return listAccounts.add(account);
+	}
+
+	/**
+	 * 
+	 * @param account - какой счет нужно удалить
+	 * @return
+	 */
+	public boolean removeAccount(Account account) {
+		return listAccounts.remove(account);
+	}
+
+	public List<Account> getListAccounts() {
+		return listAccounts;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(name);
+		for (Account a : listAccounts) {
+			sb.append("\n"+a);
+		}
+		return sb.toString();
 	}
 }
