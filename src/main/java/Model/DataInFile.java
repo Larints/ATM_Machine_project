@@ -17,7 +17,7 @@ public class DataInFile implements DataLoader {
 	 * @param fileName - Имя сохраняемого файла
 	 */
 	@Override
-	public void save(DataBaseInteface<User> data, String fileName) {
+	public void save(DataBaseInteface<Account> data, String fileName) {
 		try {
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 					new FileOutputStream("src/main/java/SavedDatabase/" + fileName));

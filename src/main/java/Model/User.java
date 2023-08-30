@@ -1,71 +1,87 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @apiNote Класс пользователя: хранит пароль, счет, имя и идентификатор
+ * @apiNote Класс пользователя: хранит пароль, счетa, имя
  */
 public class User implements Serializable {
-    /**
-     * @apiNote Уникальный идентификатор пользователя
-     */
-    private final long ID;
-    /**
-     * @return Пароль пользователя
-     */
-    private String password;
-    /**
-     * @apiNote Имя пользователя
-     */
-    private final String name;
-    /**
-     * @apiNote Личный счет пользователя
-     */
-    private Account account;
+	/**
+	 * @return Пароль пользователя
+	 */
+	private String password;
+	/**
+	 * @apiNote Имя пользователя
+	 */
+	private final String name;
 
-    /**
-     * @apiNote Конструктор для создания юзера
-     */
-    public User(long ID, String name, String password) {
-        this.ID = ID;
-        this.name = name;
-        this.password = password;
-        account = new Account();
-    }
+	private List<Account> listAccounts = new ArrayList<Account>();
 
-    /**
-     * @return Уникальный идентификатор пользователя
-     */
-    public long getID() {
-        return ID;
-    }
+	/**
+	 * @apiNote Конструктор для создания юзера
+	 * @param 1 строка name - Имя пользователя
+	 * @param 2 строка password - пароль пользователя
+	 */
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
 
-    /**
-     * @return String - имя пользователя
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * 
+	 * @return String - имя пользователя
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * @return Account - личный счет пользователя
-     */
+	/**
+	 * @return int - хешкод пароля пользователя
+	 */
+	public int getPassword() {
+		return this.password.hashCode();
+	}
 
-    public Account getAccount() {
-        return this.account;
-    }
+	/**
+	 * @apiNote Метод изменения пароля
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    /**
-     * @return int - хешкод пароля пользователя
-     */
-    public int getPassword() {
-        return this.password.hashCode();
-    }
+	/**
+	 * 
+	 * @param account - счет для добавления в список
+	 * @return
+	 */
+	public boolean addAccount(Account account) {
+		return listAccounts.add(account);
+	}
 
-    /**
-     * @apiNote Метод изменения пароля
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	/**
+	 * 
+	 * @param account - какой счет нужно удалить
+	 * @return
+	 */
+	public boolean removeAccount(Account account) {
+		return listAccounts.remove(account);
+	}
+
+	public List<Account> getListAccounts() {
+		return listAccounts;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(name);
+		for (Account a : listAccounts) {
+			sb.append("\n"+a);
+		}
+		return sb.toString();
+	}
+}
+
 }
