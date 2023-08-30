@@ -12,4 +12,8 @@ public class Model {
         return amount;
     }
 
+//    boolean diactivated (int personalcount) {
+//        if (personalcount == atm.)
+//    }
+
 }
