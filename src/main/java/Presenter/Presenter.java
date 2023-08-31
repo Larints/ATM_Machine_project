@@ -14,20 +14,19 @@ public class Presenter {
         atmMenu = new ATM_Menu();
     }
 
-    public double withdrawCash() {
-        return 0;
+    public double withdrawCash(long id, double amount) {
+        return model.takeCash(id, amount);
     }
 
-    public void deposit(double amount) {
-
+    public void deposit(long id, double amount) {
+        model.deposit(id, amount);
     }
 
-    public double checkBalance() {
-        return 0;
+    public double checkBalance(long id) {
+        return model.checkBalance(id);
     }
 
-    public boolean validate() {
-        return false;
+    public boolean validate(long id, String password) {
+        return model.validate(id, password);
     }
-
 }

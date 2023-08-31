@@ -28,35 +28,35 @@ public class ATM implements AtmInterface {
     }
 
     /**
-     * Положить средства на счет. Получает на вход,
-     *
-     * @param account
-     * @param amount
+     * @param id     - лицевой счет пользователя
+     * @param amount - вносимые средства
+     * @apiNote Положить средства на счет. Получает на вход
+     * два параметра, номер лицевого счета и средства.
      */
-    @Override
-    public void deposit(int account, double amount) {
 
+    @Override
+    public void deposit(long id, double amount) {
+        Account account = data.findAccount(id);
+        account.setMoney(account.getMoney() + amount);
     }
 
-    //TODO доделать метод проверки счета
+    //TODO сделать исключения
     @Override
-    public double withdraw(int account, double amount) {
-//        account.money = account.money - amount;
-        return amount;
+    public double withdraw(long id, double amount) {
+        Account account = data.findAccount(id);
+        account.setMoney(account.getMoney() - amount);
+        return account.getMoney();
     }
 
-
-    //TODO доделать метод проверки баланса
+    //TODO сделать исключения
     @Override
-    public double checkBalance(int account) {
-        return 0;
+    public double checkBalance(long account) {
+        return data.findAccount(account).getMoney();
     }
 
-
-    //TODO доделать метод валидации
+    //TODO доделать метод валидации c исключениями
     @Override
-    public boolean validate(String username, String password) {
-        int count = 3;
-        return false;
+    public boolean validate(long id, String password) {
+        return data.findAccount(id) != null & (data.findAccount(id).getUser().getPassword() == password.hashCode());
     }
 }
