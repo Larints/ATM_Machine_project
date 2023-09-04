@@ -83,5 +83,3 @@ public class User implements Serializable {
 		return sb.toString();
 	}
 }
-
-}

@@ -1,5 +1,7 @@
 package Model;
 
+import Model.ModelExceptions.*;
+
 public class ATM implements AtmInterface {
 
     /**
@@ -35,28 +37,29 @@ public class ATM implements AtmInterface {
      */
 
     @Override
-    public void deposit(long id, double amount) {
+    public void deposit(long id, double amount) throws DiactivateAccountRequestException{
         Account account = data.findAccount(id);
         account.setMoney(account.getMoney() + amount);
     }
 
-    //TODO сделать исключения
     @Override
-    public double withdraw(long id, double amount) {
+    public double withdraw(long id, double amount) throws DiactivateAccountRequestException{
         Account account = data.findAccount(id);
         account.setMoney(account.getMoney() - amount);
         return account.getMoney();
     }
 
-    //TODO сделать исключения
+
     @Override
-    public double checkBalance(long account) {
+    public double checkBalance(long account) throws DiactivateAccountRequestException{
         return data.findAccount(account).getMoney();
     }
 
-    //TODO доделать метод валидации c исключениями
     @Override
-    public boolean validate(long id, String password) {
-        return data.findAccount(id) != null & (data.findAccount(id).getUser().getPassword() == password.hashCode());
+    public boolean validate(long id, String password) throws ValidateAccountException{
+    	if (data.findAccount(id).getUser().getPassword() != password.hashCode()) {
+    		throw new ValidateAccountException("Неверный пароль, введите еще раз");
+    	}
+    	return true;
     }
 }

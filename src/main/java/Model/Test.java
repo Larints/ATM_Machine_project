@@ -1,7 +1,9 @@
 package Model;
 
+import Model.ModelExceptions.DiactivateAccountRequestException;
+
 public class Test {
-	public static void main(String[] args){
+	public static void main(String[] args) throws DiactivateAccountRequestException{
 		DataBaseInteface<Account> data = new DataBase();
 		long  check = data.addAccount(new User("Питар Паркер", "2314"));
 //		System.out.println(check);
