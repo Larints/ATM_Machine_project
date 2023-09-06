@@ -19,15 +19,16 @@ public class ATM implements AtmInterface {
     /**
      * @apinote Экземпляр базы данных
      */
-    private DataBase data;
+    private DataBaseInteface<Account> data;
 
     /**
      * @apinote Конструктор для создания банкомата
      */
     public ATM() {
+    	DataLoader loader = new DataInFile();
         this.name = "ATM 24/7";
         this.cash = 10000000;
-        this.data = new DataBase();
+        this.data = (DataBaseInteface<Account>) loader.load("firstData");
     }
 
     /**
