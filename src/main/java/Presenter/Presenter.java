@@ -3,7 +3,6 @@ package Presenter;
 import Model.Model;
 import Model.ModelExceptions.DiactivateAccountRequestException;
 import Model.ModelExceptions.ValidateAccountException;
-import Viewer.ATM_Menu;
 
 public class Presenter {
 
@@ -31,5 +30,9 @@ public class Presenter {
 
     public void disableAccount(long id) {
         model.disableAccount(id);
+    }
+
+    public boolean isAccountActive(long id) {
+        return model.isActive(id);
     }
 }

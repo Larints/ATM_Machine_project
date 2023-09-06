@@ -73,6 +73,10 @@ public class Account implements Serializable {
 		return user;
 	}
 
+	public boolean isActive() {
+		return isActive;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

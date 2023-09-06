@@ -34,6 +34,7 @@ public class ATM_Menu implements UI {
                 System.out.println("У вас осталось " + (3 - count) + " попыток ");
             }
             if (count == 3) {
+                System.out.println(Messages.AUTHENTICATION_FAILURE);
                 System.out.println(Messages.ACCOUNT_DISABLED);
                 presenter.disableAccount(id);
             }
@@ -55,28 +56,49 @@ public class ATM_Menu implements UI {
             System.out.println(Messages.INPUTMESSAGE);
             switch (in.nextInt()) {
                 case 1:
-                    System.out.print(Messages.AUTHENTICATION_LOGIN);
-                    long id = in.nextLong();
-                    try {
-                        presenter.checkBalance(id);
-                    } catch (DiactivateAccountRequestException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
+                    System.out.println(Messages.AUTHENTICATION_LOGIN);
+                    long id4 = in.nextLong();
+                    boolean find = presenter.isAccountActive(id4);
+                    if (find) System.out.println("Счет " + id4 + " доступен");
+                    else System.out.println("Счет " + id4 + " недоступен");
                 case 2:
                     System.out.print(Messages.AUTHENTICATION_LOGIN);
                     long id2 = in.nextLong();
                     double amount = in.nextDouble();
-
+                    try {
+                        System.out.println(presenter.withdrawCash(id2, amount));
+                        break;
+                    } catch (DiactivateAccountRequestException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
                 case 3:
+                    System.out.print(Messages.AUTHENTICATION_LOGIN);
+                    long id3 = in.nextLong();
+                    double amount2 = in.nextDouble();
+                    try {
+                        presenter.deposit(id3, amount2);
+                        System.out.println(Messages.SUCCESSDEPOSIT);
+                        break;
+                    } catch (DiactivateAccountRequestException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
+                    System.out.print(Messages.AUTHENTICATION_LOGIN);
+                    long id = in.nextLong();
+                    try {
+                        System.out.println(presenter.checkBalance(id));
+                        break;
+                    } catch (DiactivateAccountRequestException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 5:
                     System.out.println(Messages.OUTPUTMESSAGE);
+                    return;
             }
         }
-
     }
 
     @Override

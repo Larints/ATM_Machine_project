@@ -31,4 +31,8 @@ public class Model {
         atm.disableAccount(id);
     }
 
+    public boolean isActive(long id) {
+        return atm.isActive(id);
+    }
+
 }

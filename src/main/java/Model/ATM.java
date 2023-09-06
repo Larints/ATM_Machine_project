@@ -68,4 +68,8 @@ public class ATM implements AtmInterface {
         data.findAccount(id).diactivate();
     }
 
+    @Override
+    public boolean isActive(long account) {
+        return data.findAccount(account).isActive();
+    }
 }

@@ -15,4 +15,6 @@ public interface AtmInterface {
 
     void disableAccount(long id);
 
+    boolean isActive(long account);
+
 }
