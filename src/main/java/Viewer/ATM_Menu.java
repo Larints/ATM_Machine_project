@@ -1,5 +1,6 @@
 package Viewer;
 
+import Model.ModelExceptions.DiactivateAccountRequestException;
 import Model.ModelExceptions.ValidateAccountException;
 import Presenter.Presenter;
 
@@ -38,8 +39,6 @@ public class ATM_Menu implements UI {
             }
             showMenu();
         }
-
-
     }
 
     @Override
@@ -56,9 +55,19 @@ public class ATM_Menu implements UI {
             System.out.println(Messages.INPUTMESSAGE);
             switch (in.nextInt()) {
                 case 1:
+                    System.out.print(Messages.AUTHENTICATION_LOGIN);
+                    long id = in.nextLong();
+                    try {
+                        presenter.checkBalance(id);
+                    } catch (DiactivateAccountRequestException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2:
-                    break;
+                    System.out.print(Messages.AUTHENTICATION_LOGIN);
+                    long id2 = in.nextLong();
+                    double amount = in.nextDouble();
+
                 case 3:
                     break;
                 case 4:
