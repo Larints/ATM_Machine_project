@@ -11,6 +11,8 @@ public interface AtmInterface {
 
     double checkBalance(long account) throws DiactivateAccountRequestException;
 
-    boolean validate(long account, String password) throws ValidateAccountException;
+    void validate(long account, String password) throws ValidateAccountException;
+
+    void disableAccount(long id);
 
 }

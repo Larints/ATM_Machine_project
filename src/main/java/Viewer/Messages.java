@@ -20,4 +20,6 @@ public class Messages {
 
     final static String SUCCESWITHDRAW = "Средства успешно списаны с Вашего лицевого счета";
 
+    final static String ACCOUNT_DISABLED = "Ваш аккаунт заблокирован, на 24 часа!";
+
 }

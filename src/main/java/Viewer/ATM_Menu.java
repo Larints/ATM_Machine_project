@@ -1,17 +1,44 @@
 package Viewer;
 
+import Model.ModelExceptions.ValidateAccountException;
+import Presenter.Presenter;
+
 import java.util.Scanner;
 
 public class ATM_Menu implements UI {
 
-    Scanner in;
+    private Scanner in;
 
+    private Presenter presenter;
+
+    public ATM_Menu() {
+        in = new Scanner(System.in);
+        presenter = new Presenter();
+    }
 
     @Override
     public void validate() {
         greetings();
-        Scanner in = new Scanner(System.in);
-        System.out.println(Messages.AUTHENTICATION_LOGIN);
+        int count = 0;
+        while (count <= 3) {
+            System.out.print(Messages.AUTHENTICATION_LOGIN);
+            long id = in.nextLong();
+            System.out.print(Messages.AUTHENTICATION_PASSWORD);
+            String password = in.next();
+            try {
+                presenter.validate(id, password);
+            } catch (ValidateAccountException e) {
+                System.out.println(e.getMessage());
+                count++;
+                System.out.println("У вас осталось " + (3 - count) + " попыток ");
+            }
+            if (count == 3) {
+                System.out.println(Messages.ACCOUNT_DISABLED);
+                presenter.disableAccount(id);
+            }
+            showMenu();
+        }
+
 
     }
 
@@ -47,6 +74,5 @@ public class ATM_Menu implements UI {
     public String errorMessage() {
         return Messages.ERRORMESSAGE;
     }
-
 
 }

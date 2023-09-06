@@ -9,26 +9,27 @@ public class Presenter {
 
     private Model model;
 
-    private ATM_Menu atmMenu;
-
     public Presenter() {
         model = new Model();
-        atmMenu = new ATM_Menu();
     }
 
-    public double withdrawCash(long id, double amount) throws DiactivateAccountRequestException{
+    public double withdrawCash(long id, double amount) throws DiactivateAccountRequestException {
         return model.takeCash(id, amount);
     }
 
-    public void deposit(long id, double amount) throws DiactivateAccountRequestException{
+    public void deposit(long id, double amount) throws DiactivateAccountRequestException {
         model.deposit(id, amount);
     }
 
-    public double checkBalance(long id) throws DiactivateAccountRequestException{
+    public double checkBalance(long id) throws DiactivateAccountRequestException {
         return model.checkBalance(id);
     }
 
-    public boolean validate(long id, String password) throws ValidateAccountException{
-        return model.validate(id, password);
+    public void validate(long id, String password) throws ValidateAccountException {
+        model.validate(id, password);
+    }
+
+    public void disableAccount(long id) {
+        model.disableAccount(id);
     }
 }
