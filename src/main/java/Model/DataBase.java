@@ -30,10 +30,10 @@ public class DataBase implements DataBaseInteface<Account>, Serializable {
 	@Override
 	public long addAccount(User user) {
 		Random random = new Random();
-		long currentID = random.nextLong();
+		long currentID = random.nextLong(0,Long.MAX_VALUE);
 		while (data.containsKey(currentID)) {
 			
-			currentID = Math.abs(random.nextLong(0, Long.MAX_VALUE));
+			currentID = random.nextLong(0, Long.MAX_VALUE);
 		}
 		data.put(currentID, new Account(user, currentID));
 		return currentID;
