@@ -1,12 +1,5 @@
 package Viewer;
 
-import Model.Account;
-import Model.DataBase;
-import Model.DataBaseInteface;
-import Model.DataInFile;
-import Model.DataLoader;
-import Model.User;
-
 /**
  * Основной класс входа в программу
  */
@@ -25,5 +18,8 @@ public class Main {
 //    	System.out.println(data.addAccount(fourth));
 //    	DataLoader loader = new DataInFile();
 //    	loader.save(data, "firstData");
+
+        ATM_Menu atmMenu = new ATM_Menu();
+        atmMenu.validate();
     }
 }
